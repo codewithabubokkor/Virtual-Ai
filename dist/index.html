@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Virtual AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url(images/bg-login-page.png) no-repeat center center / cover;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 10px;
+            gap: 30px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+            background-color: transparent;
+            backdrop-filter: blur(4px);
+            padding: 20px 10px;
+        }
+
+        .form {
+            text-align: center;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .form>input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .container>p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+
+        .form button[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        #social-login {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #social-login>button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    </style>
+    <script>
+
+        // Redirect /chatbot.html to /public/chatbot.html
+        if (window.location.pathname === '/chatbot.html') {
+            window.location.href = '/public/chatbot.html';
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '633297949147382',
+                cookie: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+  <script type="module" crossorigin src="/assets/index-BauIR7z6.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login to Virtual AI</h1>
+        <form id="login-form" class="form">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div id="social-login">
+            <button id="google-login"><i class="fa-brands fa-google"></i> Google</button>
+            <button id="facebook-login"><i class="fa-brands fa-facebook"></i> facebook</button>
+        </div>
+        <p>Don't have an account? <a href="/public/signup.html">Sign up</a></p>
+    </div>
+</body>
+
+</html>
