@@ -29,6 +29,8 @@ fi
 
 # Build the frontend
 echo "🚀 Building frontend with Vite..."
+# Set environment variable to fix Rollup platform-specific issues
+export ROLLUP_SKIP_NODEJS_NATIVE=true
 npm run build
 
 # Check if build was successful

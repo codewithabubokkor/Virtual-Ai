@@ -84,7 +84,61 @@ npm run build:frontend
 
 3. Test all frontend features
 
+## 5. Fix Build Settings in Netlify
+
+If you encounter the `@rollup/rollup-linux-x64-gnu` error:
+
+1. Go to your Netlify site dashboard
+2. Navigate to **Site settings** > **Build & deploy** > **Environment**
+3. Add these environment variables:
+   - Key: `NPM_FLAGS`
+   - Value: `--no-optional`
+
+4. Then go to **Build & deploy** > **Continuous Deployment**
+5. Click on **Edit settings**
+6. Scroll down to **Build image selection**
+7. Select the latest stable build image
+
+8. After saving, go back to **Deploys**
+9. Click **Clear cache and deploy site**
+
+This resolves most platform-specific dependency issues between your local macOS environment and Netlify's Linux build environment.
+
 ## Troubleshooting
+
+### Common Build Errors
+
+- **Missing Rollup Module Error** (`@rollup/rollup-linux-x64-gnu`):
+  
+  This error occurs because Netlify builds on Linux, but your development environment is macOS.
+  
+  **Solution**:
+  1. Add this to your `vite.config.js` file:
+     ```javascript
+     export default defineConfig({
+         // ...existing config...
+         build: {
+             // ...existing build options...
+             rollupOptions: {
+                 external: [
+                     // Add external dependencies that cause platform-specific issues
+                 ]
+             }
+         }
+     });
+     ```
+  
+  2. Or specify the Node.js version in `netlify.toml`:
+     ```toml
+     [build.environment]
+       NODE_VERSION = "18"
+     ```
+  
+  3. You can also try forcing a clean install:
+     - Go to Netlify site settings
+     - Build & Deploy > Continuous Deployment
+     - Edit settings
+     - Clear cache and deploy site
 
 - **404 errors on refresh**: Your Netlify redirects might not be set up correctly. Check your `netlify.toml` file.
 

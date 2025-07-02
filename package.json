@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node -r ./rollup-fix.js node_modules/.bin/vite build",
     "serve": "vite preview",
     "backend": "node src/js/server.js",
     "setup-db": "node src/js/db-setup.js",
@@ -28,6 +28,7 @@
     "gsap": "^3.12.7",
     "leva": "^0.10.0",
     "mysql2": "^3.14.1",
+    "rollup": "^3.29.4",
     "three": "^0.173.0"
   }
 }
